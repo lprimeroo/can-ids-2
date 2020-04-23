@@ -26,7 +26,7 @@ if __name__ == "__main__":
     parser.add_argument('--time', metavar='[TIME_LIMIT]', help='specify for how long the generation should be run (in secs)')
     parser.add_argument('--dump', metavar='[DIRECTORY]', help='specify the directory to dump the logfile in')
     parser.add_argument('--sim', metavar='[INTERFACE]', help='open the simulator for manual generation of CAN data')
-    parser.add_argument('--attack', metavar='[ATTACK_TYPE]', help='determine the attack to be simulated')
+    parser.add_argument('--attack', metavar='[ATTACK_LOG_FILE_PATH]', help='determine the attack to be simulated using the appropriate logfile')
     parser.add_argument('--ids', metavar='[MODEL_TYPE]', help='determine the IDS type to be used')
     args = parser.parse_args()
 
@@ -40,8 +40,8 @@ if __name__ == "__main__":
         open_sim(interface)
 
     # # Carry out the appropriate attack using the logs
-    # if args.attacks is not None:
-    #     # attack(args.attack)
+    if args.attacks is not None:
+        # attack(args.attack)
 
     # # Use the specified IDS on logs
     # if args.ids is not None:
