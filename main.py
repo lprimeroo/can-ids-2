@@ -1,12 +1,11 @@
 import subprocess
 from multiprocessing import Process
 from argparse import ArgumentParser
-from can_utils import cangen, candump, open_sim
-# from attacks_can import attack
-# from ids import detect
+from can_utils import cangen, candump, open_sim, canplayer
+from ids import detect
 
 # This is a handler function for running candump and cangen in different processes
-def handle_can_generate(args):
+def (args):
     interface = args.generate
     time = int(args.time)
     if args.dump is not None:
@@ -26,13 +25,14 @@ if __name__ == "__main__":
     parser.add_argument('--time', metavar='[TIME_LIMIT]', help='specify for how long the generation should be run (in secs)')
     parser.add_argument('--dump', metavar='[DIRECTORY]', help='specify the directory to dump the logfile in')
     parser.add_argument('--sim', metavar='[INTERFACE]', help='open the simulator for manual generation of CAN data')
-    parser.add_argument('--attack', metavar='[ATTACK_LOG_FILE_PATH]', help='determine the attack to be simulated using the appropriate logfile')
+    parser.add_argument('--attack', metavar='[ATTACK_LOG_FILE_PATH]', nargs='*', help='determine the attack to be simulated using the appropriate logfile')
     parser.add_argument('--ids', metavar='[MODEL_TYPE]', help='determine the IDS type to be used')
     args = parser.parse_args()
 
     # The network interface and time limit should always be specified together
     if args.generate is not None and args.time is not None:
-        handle_can_generate(args)
+        can_generate_handler(args)
+
 
     # Opens the simulator on the specified interface for manual generation of CAN data
     if args.sim is not None:
@@ -40,11 +40,11 @@ if __name__ == "__main__":
         open_sim(interface)
 
     # # Carry out the appropriate attack using the logs
-    if args.attacks is not None:
-        # attack(args.attack)
+    if args.attack is not None:
+        canplayer(args.attack[0], args.attack[1]) # takes the logfile as the parameter
 
     # # Use the specified IDS on logs
-    # if args.ids is not None:
-        # detect(args.ids)
+    if args.ids is not None:
+        detect(args.ids)
         
     print(args)

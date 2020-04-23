@@ -11,16 +11,17 @@ def cangen(interface, time):
 
 
 # Acts like Wireshark and takes a dump of the CAN bus
-def candump(interface, time):
+def candump(interface, time=None):
     candump_proc = subprocess.Popen(['candump', interface, '-l'])
-    candump_timer = threading.Timer(time, candump_proc.kill)
-    candump_timer.start()
+    if time is not None:
+        candump_timer = threading.Timer(time, candump_proc.kill)
+        candump_timer.start()
     candump_proc.wait()
 
 
 # Loads a logfile into the CAN bus
-def canplayer(logfile_path, interface):
-    canplayer_proc = subprocess.Popen(['canplayer', '-I', 'vcan0=%s' % interface, logfile_path])
+def canplayer(interface, logfile_path):
+    canplayer_proc = subprocess.Popen(['canplayer',  'vcan0=%s' % interface, '-I', logfile_path])
     canplayer_proc.wait()
 
 
