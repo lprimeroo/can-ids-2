@@ -5,7 +5,7 @@ from can_utils import cangen, candump, open_sim, canplayer
 from ids import detect
 
 # This is a handler function for running candump and cangen in different processes
-def (args):
+def can_generate_handler(args):
     interface = args.generate
     time = int(args.time)
     if args.dump is not None:
