@@ -34,7 +34,7 @@ python3 main.py --sim vcan0
 3. Use logfile to generate traffic on the CAN bus. Useful for carrying out attacks.
 
 ```sh
-python3 main.py --attack <path_to_logfile>
+python3 main.py --attack <interface> <path_to_logfile>
 ```
 
 4. Use the trained IDS by specifying the model.
