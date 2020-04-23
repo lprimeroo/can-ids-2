@@ -1,0 +1,4 @@
+Mime-Types: *=text/plain log=text/plain
+Bagging-Date: 2019-11-13
+Bag-Size: 554.1 MB.32
+Payload-Oxum: 581030400
