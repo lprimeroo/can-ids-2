@@ -4,4 +4,4 @@
 keras == 2.3.1
 
 # can-ids/ids.py: 2
-numpy == 1.16.4
+numpy == 1.22.0
